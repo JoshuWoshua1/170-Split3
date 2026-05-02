@@ -18,4 +18,10 @@ public class CameraController : MonoBehaviour
         transform.position = cameraPivot.position + positionOffset;
         transform.rotation = rotationOffset;
     }
+
+    public void ScaleCamera(float playersize)
+    {
+        float scaleFactor = 1f + (playersize - 1f) * 0.5f; // Adjust the multiplier as needed
+        positionOffset *= scaleFactor;
+    }
 }
