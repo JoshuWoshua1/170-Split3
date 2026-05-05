@@ -3,8 +3,8 @@ using UnityEngine;
 public class Destructable : MonoBehaviour
 {
     public float sizeRequirement = 1f; // player size required to consume this object 
-    [SerializeField] private ResourceType resourceType; // type of resource this object provides
-    [SerializeField] private int resourceAmount = 1; // amount of resource this object provides
+    [SerializeField] private ResourceType[] resourceType; // type(s) of resource this object provides
+    [SerializeField] private int[] resourceAmount = {1}; // amount(s) of resource this object provides
 
     ResourceManager resourceManager;
     Collider collider;
@@ -33,7 +33,15 @@ public class Destructable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
+            foreach (ResourceType type in resourceType)
+            {
+                int index = System.Array.IndexOf(resourceType, type);
+                if (index >= 0 && index < resourceAmount.Length)
+                {
+                    resourceManager.AddResource(type, resourceAmount[index]); // add resource to resource manager.
+                }
+            }
+            //resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
             Destroy(gameObject); // destroy object after consumption.
         }
     }

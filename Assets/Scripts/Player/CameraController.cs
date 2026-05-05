@@ -3,25 +3,36 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform cameraPivot;
+    [SerializeField] private float baseOrthographicSize = 5f;
+    [SerializeField] private float cameraScaleMultiplier = 0.5f;
+    [SerializeField] private Camera mainCamera;
 
-    private Vector3 positionOffset; 
-    private Quaternion rotationOffset;
+    private Vector3 positionOffset;
 
     void Start()
     {
+        if (cameraPivot == null)
+        {
+            Debug.LogError("CameraController requires a cameraPivot Transform assigned.");
+        }
         positionOffset = transform.position - cameraPivot.position;
-        rotationOffset = transform.rotation;
     }
 
     void Update()
     {
         transform.position = cameraPivot.position + positionOffset;
-        transform.rotation = rotationOffset;
+        CheckSizeChange();
     }
 
-    public void ScaleCamera(float playersize)
+    private void CheckSizeChange()
     {
-        float scaleFactor = 1f + (playersize - 1f) * 0.5f; // Adjust the multiplier as needed
-        positionOffset *= scaleFactor;
+        float playerSize = PlayerController.Instance.size;
+        ScaleCamera(playerSize);
+    }
+    
+    public void ScaleCamera(float playerSize)
+    {
+        float scaleFactor = 1f + (playerSize - 1f) * cameraScaleMultiplier;
+        mainCamera.orthographicSize = baseOrthographicSize * scaleFactor;
     }
 }

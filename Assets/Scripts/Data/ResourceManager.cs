@@ -58,6 +58,28 @@ public class ResourceManager : MonoBehaviour
         } else Debug.LogWarning("Resource type " + type + " not found in dictionary.");
     }
 
+    public void RemoveResource(ResourceType type, int amount)
+    {
+        if (resources.ContainsKey(type))
+        {
+            resources[type] = Mathf.Max(0, resources[type] - amount); // remove specified amount from the resource type in the dictionary, ensuring it doesn't go below 0.
+        }
+        else Debug.LogWarning("Resource type " + type + " not found in dictionary.");
+    }
+
+    public int GetResourceAmount(ResourceType type)
+    {
+        if (resources.ContainsKey(type))
+        {
+            return resources[type]; // return the amount of the specified resource type in the dictionary.
+        }
+        else
+        {
+            Debug.LogWarning("Resource type " + type + " not found in dictionary.");
+            return 0;
+        }
+    }
+
     public string GetResourceSummary()
     {
         System.Text.StringBuilder sb = new System.Text.StringBuilder("Resources Debug:\n");
