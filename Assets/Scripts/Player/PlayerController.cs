@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     // add scriptable object reference for resource thresholds for size upgrades.
     [SerializeField] private SizeUp_Data sizeUpData;
     public static PlayerController Instance { get; private set; }
-    [SerializeField] private GameObject player;
     [SerializeField] private float moveSpeed = 5f; 
     public float size = 1f;
 
@@ -27,9 +26,9 @@ public class PlayerController : MonoBehaviour
         }
 
         characterController = GetComponent<CharacterController>();
-        if (characterController == null && player != null)
+        if (characterController == null && gameObject != null)
         {
-            characterController = player.GetComponent<CharacterController>();
+            characterController = gameObject.GetComponent<CharacterController>();
         }
 
         if (characterController == null)

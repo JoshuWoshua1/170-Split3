@@ -7,12 +7,12 @@ public class Destructable : MonoBehaviour
     [SerializeField] private int[] resourceAmount = {1}; // amount(s) of resource this object provides
 
     ResourceManager resourceManager;
-    Collider collider;
+    Collider objectCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         resourceManager = ResourceManager.Instance; // get instance of resource manager.
-        collider = GetComponent<Collider>();
+        objectCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class Destructable : MonoBehaviour
     {
         if (PlayerController.Instance.size >= sizeRequirement)
         {
-            collider.isTrigger = true; // enable collider to allow player to consume object.
-        } else collider.isTrigger = false; // disable collider to prevent player from consuming object.
+            objectCollider.isTrigger = true; // enable collider to allow player to consume object.
+        } else objectCollider.isTrigger = false; // disable collider to prevent player from consuming object.
     }
 
     private void OnTriggerEnter(Collider other)
