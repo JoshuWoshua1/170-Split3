@@ -46,11 +46,15 @@ public class ResourceUIScript : MonoBehaviour
     {
         if (UIElements.TryGetValue(type, out ElementUI UI))
         {
-            if (UI.getAmount() > 0 && !UI.gameObject.activeSelf)
+            if (UI.getAmount() > 0 && !UI.gameObject.activeSelf) //shows the UI element when the value is greater than 0 and it was not active; essentially adds the element to the UI when it's "discovered" for the first time
             {
                 UI.gameObject.SetActive(true);
             }
             UI.setAmount(amnt, "set");
         }
+    }
+
+    void showPanel() { 
+
     }
 }
