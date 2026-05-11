@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float moveSpeed = 2f;
+    public float chaseMoveSpeed = 2f;
+    public float runAwayMoveSpeed = 2.5f;
     private Transform playerTransform;
     public float trackingRange = 3f;
     public float sizeRequirement = 1f; // player size required to consume this enemy 
@@ -39,10 +40,15 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = HorizontalDistanceToPlayer();
         //Debug.Log($"Enemy scanning. distance={distanceToPlayer:F2}, range={trackingRange:F2}", this);
 
-        if (distanceToPlayer <= trackingRange)
+        if (distanceToPlayer <= trackingRange && sizeRequirement > PlayerController.Instance.size)
         {
             MoveTowardsPlayer();
             //Debug.Log("Enemy is tracking the player!");
+        }
+        else if (distanceToPlayer <= trackingRange && sizeRequirement <= PlayerController.Instance.size)
+        {
+            RunAwayFromPlayer();
+            //Debug.Log("Enemy is running away from the player!");
         }
     }
 
@@ -52,7 +58,15 @@ public class Enemy : MonoBehaviour
         Vector3 toPlayer = playerTransform.position - transform.position;
         toPlayer.y = 0f; // ignore height differences for simple ground tracking
         Vector3 direction = toPlayer.normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        transform.position += direction * chaseMoveSpeed * Time.deltaTime;
+    }
+
+    private void RunAwayFromPlayer()
+    {
+        Vector3 awayFromPlayer = transform.position - playerTransform.position;
+        awayFromPlayer.y = 0f; // ignore height differences for simple ground tracking
+        Vector3 direction = awayFromPlayer.normalized;
+        transform.position += direction * runAwayMoveSpeed * Time.deltaTime;
     }
 
     private float HorizontalDistanceToPlayer()
