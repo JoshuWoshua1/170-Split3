@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cameraPivot: {fileID: 38953122}
   baseOrthographicSize: 5
-  cameraScaleMultiplier: 0.5
+  cameraScaleMultiplier: 1
   mainCamera: {fileID: 330585545}
 --- !u!4 &1999188890
 Transform:
@@ -1418,18 +1418,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2561608671992952414, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
-      propertyPath: enemyPrefab
-      value: 
-      objectReference: {fileID: 1016280903755847747, guid: 41e5cc6b4a55fe24794575e957568420, type: 3}
-    - target: {fileID: 2561608671992952414, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
-      propertyPath: spawnRadius
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2561608671992952414, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
-      propertyPath: despawnRadius
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 4530602900629708001, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
       propertyPath: m_Name
       value: Ameoba (player)
