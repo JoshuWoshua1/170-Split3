@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cameraPivot: {fileID: 38953122}
   baseOrthographicSize: 5
-  cameraScaleMultiplier: 0.5
+  cameraScaleMultiplier: 1
   mainCamera: {fileID: 330585545}
 --- !u!4 &1999188890
 Transform:

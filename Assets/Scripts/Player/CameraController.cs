@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform cameraPivot;
     [SerializeField] private float baseOrthographicSize = 5f;
-    [SerializeField] private float cameraScaleMultiplier = 0.8f;
+    [SerializeField] private float cameraScaleMultiplier = 1f;
     [SerializeField] private Camera mainCamera;
 
     private Vector3 positionOffset;

@@ -125,9 +125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337dbacfc8d73d84abb9bb8e354d5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 3
-  trackingRange: 3
-  showScanDebug: 1
+  chaseMoveSpeed: 3
+  runAwayMoveSpeed: 2.5
+  roamMoveSpeed: 2
+  trackingRange: 5
+  runAwayBuffer: 2
   sizeRequirement: 2
   resourceType: 00000000
   resourceAmount: 01000000
+  roamNoiseScale: 0.35
+  roamSmoothing: 4
