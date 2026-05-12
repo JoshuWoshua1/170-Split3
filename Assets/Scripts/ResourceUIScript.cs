@@ -13,6 +13,8 @@ public class ResourceUIScript : MonoBehaviour
 
     private Dictionary<ResourceType, ElementUI> UIElements = new Dictionary<ResourceType, ElementUI>();
 
+    private float xPos = 0;
+
     void Start()
     {
         //DOTween.Init(autoKillMode, useSafeMode, logBehaviour); 
@@ -49,6 +51,8 @@ public class ResourceUIScript : MonoBehaviour
             newElement.Load(type, ResourceManager.Instance.GetResourceAmount(type));
             newElement.gameObject.SetActive(false);
 
+            xPos = newElement.transform.localPosition.x;
+            
             UIElements.Add(type, newElement);
         }
     }
@@ -67,8 +71,6 @@ public class ResourceUIScript : MonoBehaviour
 
     void showPanel() {
         UITransformParent.gameObject.SetActive(true);
-
-        float UIXPosition = 0;
 
         foreach (ElementUI UI in UIElements.Values)
         {
