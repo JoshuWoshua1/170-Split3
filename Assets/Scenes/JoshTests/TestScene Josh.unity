@@ -1418,6 +1418,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2561608671992952414, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
+      propertyPath: spawnRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2561608671992952414, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
+      propertyPath: despawnRadius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4530602900629708001, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
       propertyPath: m_Name
       value: Ameoba (player)

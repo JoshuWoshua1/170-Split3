@@ -32,6 +32,28 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         checkPlayerScale();
+        spawnTimer += Time.deltaTime;
+        if (spawnTimer >= spawnInterval)
+        {
+            spawnTimer = 0f;
+            TrySpawnEnemy();
+        }
+    }
+
+    private void TrySpawnEnemy()
+    {
+        if (PlayerController.Instance == null) return;
+
+        int currentEnemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        if (currentEnemyCount >= maxEnemies) return; // dont spawn anything past max enemy count
+
+        Vector3 playerPos = PlayerController.Instance.transform.position;
+        Vector3 randomDirection = Random.insideUnitSphere;
+        randomDirection.y = 0f; // keep spawns on the same y axis
+        randomDirection.Normalize();
+        Vector3 spawnPos = playerPos + randomDirection * spawnRadius;
+
+        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
     }
 
     private void checkPlayerScale()

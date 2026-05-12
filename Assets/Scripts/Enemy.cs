@@ -10,9 +10,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ResourceType[] resourceType; // type(s) of resource this enemy provides
     [SerializeField] private int[] resourceAmount = {1}; // amount(s) of resource this enemy provides
     private bool canDoDamage = true; // flag to control whether the enemy can currently damage the player
+    private bool isTracking = false; // flag to indicate if the enemy is currently tracking the player
     
     ResourceManager resourceManager;
     Collider enemyCollider;
+
+    [SerializeField] private int updateFrameTimer = 5; // how many frames between update checks
+    private int frameCounter = 0; // counter to track frames for update checks
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,8 +33,20 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckSize();
+        if (!isTracking)
+        {
+            Roam();
+        }
         ScanForPlayer();
+        CheckSize();
+    }
+    // CHANGE ALL OF THIS SO THAT ITS MORE LIKE A STATE MACHINE SO CHASING ISNT WEIRD
+
+    private void Roam()
+    {
+        // Simple roaming behavior: move in a random direction for a short duration
+        Vector3 randomDirection = new Vector3(Mathf.PerlinNoise(Time.time, 0f) - 0.5f, 0f, Mathf.PerlinNoise(0f, Time.time) - 0.5f).normalized;
+        transform.position += randomDirection * chaseMoveSpeed * Time.deltaTime;
     }
 
     private void ScanForPlayer()
@@ -50,10 +66,16 @@ public class Enemy : MonoBehaviour
             RunAwayFromPlayer();
             //Debug.Log("Enemy is running away from the player!");
         }
+        else if (isTracking)
+        {
+            isTracking = false;
+            //Debug.Log("Enemy lost track of the player.");
+        }
     }
 
     private void MoveTowardsPlayer()
     {
+        isTracking = true;
         //Debug.Log("Enemy is moving towards the player!");
         Vector3 toPlayer = playerTransform.position - transform.position;
         toPlayer.y = 0f; // ignore height differences for simple ground tracking
@@ -63,6 +85,7 @@ public class Enemy : MonoBehaviour
 
     private void RunAwayFromPlayer()
     {
+        isTracking = true;
         Vector3 awayFromPlayer = transform.position - playerTransform.position;
         awayFromPlayer.y = 0f; // ignore height differences for simple ground tracking
         Vector3 direction = awayFromPlayer.normalized;
