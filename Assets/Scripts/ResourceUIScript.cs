@@ -13,7 +13,6 @@ public class ResourceUIScript : MonoBehaviour
 
     private Dictionary<ResourceType, ElementUI> UIElements = new Dictionary<ResourceType, ElementUI>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //DOTween.Init(autoKillMode, useSafeMode, logBehaviour); 
@@ -26,7 +25,6 @@ public class ResourceUIScript : MonoBehaviour
         InitializeUI();
     }
 
-    // Update is called once per frame
     void Update()
     {
         foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
@@ -43,7 +41,7 @@ public class ResourceUIScript : MonoBehaviour
 
     void InitializeUI()
     {
-        UITransformParent.gameObject.SetActive(false);
+        UITransformParent.Translate(Vector3.left * 350);
 
         foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
         {
@@ -70,6 +68,27 @@ public class ResourceUIScript : MonoBehaviour
     void showPanel() {
         UITransformParent.gameObject.SetActive(true);
 
-        UITransformParent.DOMoveX(-10, 2).From();
+        float UIXPosition = 0;
+
+        foreach (ElementUI UI in UIElements.Values)
+        {
+            //UIXPosition = UI.transform.position.x;
+            UI.transform.Translate(Vector3.left * 350);
+        }
+
+        UITransformParent.DOMoveX(175, 0.75f).OnComplete(() =>
+        {
+            float i = 0;
+            foreach (ElementUI UI in UIElements.Values)
+            {
+                UI.transform.DOMoveX(220, 1f).SetDelay(i);
+                i += 0.25f;
+            }
+        });
+
+        /*foreach (ElementUI UI in UIElements.Values)
+        {
+            UI.transform.DOMoveX(-50, 2f).From();
+        }*/
     }
 }
