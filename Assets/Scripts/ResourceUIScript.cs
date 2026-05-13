@@ -87,13 +87,13 @@ public class ResourceUIScript : MonoBehaviour
             UI.transform.Translate(Vector3.left * 350);
         }
 
-        UITransformParent.DOMoveX(175, 0.75f).OnComplete(() =>
+        UITransformParent.DOMoveX(175, 0.55f).OnComplete(() =>
         {
             float i = 0;
             foreach (ElementUI UI in UIElements.Values)
             {
-                UI.transform.DOMoveX(220, 1f).SetDelay(i);
-                i += 0.25f;
+                UI.transform.DOMoveX(220, 0.25f).SetDelay(i);
+                i += 0.1f;
             }
         });
 
@@ -113,7 +113,7 @@ public class ResourceUIScript : MonoBehaviour
         float count = 0;
         foreach (ElementUI UI in UIElements.Values)
         {
-            UI.transform.DOMoveX(-220, 0.55f).SetDelay(i).OnComplete(() =>
+            UI.transform.DOMoveX(-220, 0.25f).SetDelay(i).OnComplete(() =>
             {
                 count++;
                 if (count == UIElements.Count)
@@ -127,7 +127,7 @@ public class ResourceUIScript : MonoBehaviour
                     });
                 }
             });
-            i += 0.25f;
+            i += 0.1f;
             
         }
 

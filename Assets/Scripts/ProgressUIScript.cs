@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ProgressUIScript : MonoBehaviour
 {
+    [Tooltip("This needs to be the same sizeUpData object used on the player for accurate progress tracking!")]
     [SerializeField] private SizeUp_Data sizeUpData; //this needs to be the same sizeUpData object used on the player
 
     [SerializeField] private ProgressUI UIPrefab;
@@ -68,6 +69,11 @@ public class ProgressUIScript : MonoBehaviour
 
         tier = sizeUpData.tiers[currentTier];
 
+        foreach (Transform child in UITransform)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach (ResourceRequirement requirement in tier.resourceThresholds)
         {
             ProgressUI newProgress = Instantiate(UIPrefab, UITransform);
@@ -83,18 +89,24 @@ public class ProgressUIScript : MonoBehaviour
     {
         foreach (ResourceRequirement requirement in tier.resourceThresholds)
         {
+            meetsThresholds = true;
             if (ResourceManager.Instance.GetResourceAmount(requirement.resourceType) < requirement.amount)
             {
                 meetsThresholds = false;
                 if (UIElements.TryGetValue(type, out ProgressUI UI))
                 {
-                    UI.setAmount(amnt, curr, "set");
+                    UI.setAmount(curr, amnt, "set");
                 }
                 break;
             }
         }
         if (meetsThresholds)
         {
+            if (UIElements.TryGetValue(type, out ProgressUI UI))
+            {
+                UI.setAmount(curr, amnt, "set");
+            }
+            Debug.Log("updatimg");
             updateProgress();
         }
     }
