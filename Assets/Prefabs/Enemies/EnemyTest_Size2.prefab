@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6863107308510934930}
   - component: {fileID: 893312782619615483}
   m_Layer: 0
-  m_Name: EnemyTest
+  m_Name: EnemyTest_Size2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c669904bf89e9b4f8a285276c710580, type: 2}
+  - {fileID: 2100000, guid: 60e64c829fa771f459833ddb5f8f1195, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,13 +125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337dbacfc8d73d84abb9bb8e354d5196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  chaseMoveSpeed: 3
-  runAwayMoveSpeed: 2.5
-  roamMoveSpeed: 2
-  trackingRange: 5
+  chaseMoveSpeed: 2.8
+  runAwayMoveSpeed: 2.2
+  roamMoveSpeed: 1.8
+  trackingRange: 6
   runAwayBuffer: 2
   sizeRequirement: 2
-  resourceType: 00000000
-  resourceAmount: 01000000
+  resourceType: 0000000001000000
+  resourceAmount: 0300000001000000
   roamNoiseScale: 0.35
   roamSmoothing: 4

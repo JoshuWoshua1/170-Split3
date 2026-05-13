@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(SpawnTrack());
         //Debug.LogError("test");
+        gameObject.transform.localScale = sizeRequirement * 0.9f * Vector3.one; // scale enemy size based on size requirement
     }
 
     // Update is called once per frame
@@ -60,7 +61,6 @@ public class Enemy : MonoBehaviour
         }
         ScanForPlayer();
         CheckSize();
-
     }
     // CHANGE ALL OF THIS SO THAT ITS MORE LIKE A STATE MACHINE SO CHASING ISNT WEIRD
 
