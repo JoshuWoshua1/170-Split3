@@ -15,6 +15,8 @@ public class ResourceUIScript : MonoBehaviour
 
     private float xPos = 0;
 
+    private bool animPlaying = false;
+
     void Start()
     {
         //DOTween.Init(autoKillMode, useSafeMode, logBehaviour); 
@@ -37,7 +39,14 @@ public class ResourceUIScript : MonoBehaviour
         if (UnityEngine.InputSystem.Keyboard.current.qKey.wasPressedThisFrame) //change this later
         {
             Debug.Log("showing panel");
-            showPanel();
+            if (!animPlaying)
+                showPanel();
+        }
+        if (UnityEngine.InputSystem.Keyboard.current.qKey.wasReleasedThisFrame) //change this later
+        {
+            Debug.Log("hiding panel");
+            if (!animPlaying)
+                hidePanel();
         }
     }
 
@@ -70,7 +79,7 @@ public class ResourceUIScript : MonoBehaviour
     }
 
     void showPanel() {
-        UITransformParent.gameObject.SetActive(true);
+        animPlaying = true;
 
         foreach (ElementUI UI in UIElements.Values)
         {
@@ -88,9 +97,52 @@ public class ResourceUIScript : MonoBehaviour
             }
         });
 
+        animPlaying = false;
+
         /*foreach (ElementUI UI in UIElements.Values)
         {
             UI.transform.DOMoveX(-50, 2f).From();
         }*/
+    }
+
+    void hidePanel()
+    {
+        animPlaying = true;
+
+        float i = 0;
+        float count = 0;
+        foreach (ElementUI UI in UIElements.Values)
+        {
+            UI.transform.DOMoveX(-220, 1f).SetDelay(i);
+            i += 0.25f;
+            count++;
+            if (count == UIElements.Count)
+            {
+                UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
+                {
+                    foreach (ElementUI UI in UIElements.Values)
+                    {
+                        //UIXPosition = UI.transform.position.x;
+                        UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
+                    }
+                });
+            }
+        }
+
+
+
+       /* UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
+        {
+            foreach (ElementUI UI in UIElements.Values)
+            {
+                //UIXPosition = UI.transform.position.x;
+                UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
+            }
+        });*/
+
+        
+
+        animPlaying = false;
+
     }
 }
