@@ -17,13 +17,6 @@ public class ElementUI : MonoBehaviour
 
         this.Amount.text = amnt.ToString();
 
-        /*if (this.amnt > 0)
-        {
-            this.SetActive(true);
-        } else
-        {
-            this.SetActive(false);
-        }*/
     }
 
     public void setAmount(int num, string type)

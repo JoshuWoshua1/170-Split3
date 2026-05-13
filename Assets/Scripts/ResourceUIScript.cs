@@ -113,34 +113,36 @@ public class ResourceUIScript : MonoBehaviour
         float count = 0;
         foreach (ElementUI UI in UIElements.Values)
         {
-            UI.transform.DOMoveX(-220, 1f).SetDelay(i);
-            i += 0.25f;
-            count++;
-            if (count == UIElements.Count)
+            UI.transform.DOMoveX(-220, 0.55f).SetDelay(i).OnComplete(() =>
             {
-                UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
+                count++;
+                if (count == UIElements.Count)
                 {
-                    foreach (ElementUI UI in UIElements.Values)
-                    {
-                        //UIXPosition = UI.transform.position.x;
-                        UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
-                    }
-                });
-            }
+                    UITransformParent.DOMoveX(-175, 0.55f).OnComplete(() => {
+                        foreach (ElementUI UI in UIElements.Values)
+                        {
+                            //UIXPosition = UI.transform.position.x;
+                            UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
+                        }
+                    });
+                }
+            });
+            i += 0.25f;
+            
         }
 
 
-
-       /* UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
-        {
-            foreach (ElementUI UI in UIElements.Values)
-            {
-                //UIXPosition = UI.transform.position.x;
-                UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
-            }
-        });*/
-
         
+        /* UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
+         {
+             foreach (ElementUI UI in UIElements.Values)
+             {
+                 //UIXPosition = UI.transform.position.x;
+                 UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
+             }
+         });*/
+
+
 
         animPlaying = false;
 
