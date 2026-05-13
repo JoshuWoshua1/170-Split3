@@ -1379,6 +1379,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2693910919919201546, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
+      propertyPath: sizeUpData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c48bf4265605a1429e8d7d15bcc5bfa, type: 2}
     - target: {fileID: 4530602900629708001, guid: 5335232ae04c13a40a2cfb273756b587, type: 3}
       propertyPath: m_Name
       value: Ameoba (player)
