@@ -193,9 +193,11 @@ public class Enemy : MonoBehaviour
             if (index >= 0 && index < resourceAmount.Length)
             {
                 resourceManager.AddResource(type, resourceAmount[index]); // add resource to resource manager.
+                GameManager.Instance.AddResourcesGained(resourceAmount[index]); // add to resource gain count in game manager.
             }
         }
         //resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
+        GameManager.Instance.AddEaten(1);
         Destroy(gameObject); // destroy object after consumption.
     }
 
