@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public GameObject enemyPrefab;
+    [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
     public float spawnRadius = 15f; // base spawn radius before player-size scaling
     public float despawnRadius = 30f; // base despawn radius before player-size scaling
     [SerializeField] private float scaleMultiplier = 0.5f; // scale up = playersize*scaleMultiplier for spawn/despawn radius
@@ -24,6 +25,7 @@ public class EnemySpawner : MonoBehaviour
     private float scaledDespawnRadius;
     [SerializeField] private float spawnInterval = 2f; // time between spawns
     [SerializeField] private int maxEnemies = 10; // maximum number of enemies in the scene at once.
+    [SerializeField] private int maxLargeEnemies = 3; // cap for enemies larger than current player size
     private float spawnTimer;
     private float despawnTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,9 +58,55 @@ public class EnemySpawner : MonoBehaviour
     private void TrySpawnEnemy()
     {
         if (PlayerController.Instance == null) return;
+        if (enemyPrefabs.Count == 0) return;
 
-        int currentEnemyCount = FindObjectsByType<Enemy>(FindObjectsSortMode.None).Length;
+        Enemy[] existingEnemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+        int currentEnemyCount = existingEnemies.Length;
         if (currentEnemyCount >= maxEnemies) return; // dont spawn anything past max enemy count
+
+        float currentPlayerSize = PlayerController.Instance.size;
+        float minSpawnSize = Mathf.Max(1f, currentPlayerSize - 1f); // clamp min enemy sze to 1 below player
+        float maxSpawnSize = currentPlayerSize + 1f; // clamp max enemy size to 1 above player size
+
+        int largerEnemyCount = 0;
+
+        foreach (Enemy enemy in existingEnemies)
+        {
+            if (enemy == null) continue;
+
+            if (enemy.sizeRequirement > currentPlayerSize)
+            {
+                largerEnemyCount++;
+                // Debug.Log("Large enemies:" + largerEnemyCount);
+            }
+        }
+
+        List<GameObject> candidatePrefabs = new List<GameObject>();
+        foreach (GameObject prefab in enemyPrefabs)
+        {
+            if (prefab == null) continue;
+
+            Enemy prefabEnemy = prefab.GetComponent<Enemy>();
+            if (prefabEnemy == null) continue;
+
+            float prefabSize = prefabEnemy.sizeRequirement;
+            if (prefabSize < minSpawnSize || prefabSize > maxSpawnSize)
+            {
+                continue;
+            }
+
+            if (prefabSize > currentPlayerSize && largerEnemyCount >= maxLargeEnemies)
+            {
+                continue;
+            }
+
+            candidatePrefabs.Add(prefab);
+        }
+
+        if (candidatePrefabs.Count == 0) return;
+
+        GameObject selectedPrefab = candidatePrefabs[Random.Range(0, candidatePrefabs.Count)];
+        //Debug.Log("Spawning enemy of size: " + selectedPrefab.GetComponent<Enemy>().sizeRequirement);
 
         Vector3 playerPos = PlayerController.Instance.transform.position;
         Vector3 randomDirection = Random.insideUnitSphere;
@@ -66,7 +114,7 @@ public class EnemySpawner : MonoBehaviour
         randomDirection.Normalize();
         Vector3 spawnPos = playerPos + randomDirection * scaledSpawnRadius;
 
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
     }
 
     private void DespawnFarEnemies()
