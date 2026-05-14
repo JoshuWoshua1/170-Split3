@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(SpawnTrack());
         //Debug.LogError("test");
+        gameObject.transform.localScale = sizeRequirement * 0.9f * Vector3.one; // scale enemy size based on size requirement
     }
 
     // Update is called once per frame
@@ -60,7 +61,6 @@ public class Enemy : MonoBehaviour
         }
         ScanForPlayer();
         CheckSize();
-
     }
     // CHANGE ALL OF THIS SO THAT ITS MORE LIKE A STATE MACHINE SO CHASING ISNT WEIRD
 
@@ -193,9 +193,11 @@ public class Enemy : MonoBehaviour
             if (index >= 0 && index < resourceAmount.Length)
             {
                 resourceManager.AddResource(type, resourceAmount[index]); // add resource to resource manager.
+                GameManager.Instance.AddResourcesGained(resourceAmount[index]); // add to resource gain count in game manager.
             }
         }
         //resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
+        GameManager.Instance.AddEaten(1);
         Destroy(gameObject); // destroy object after consumption.
     }
 

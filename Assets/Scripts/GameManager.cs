@@ -24,28 +24,66 @@ public class GameManager : MonoBehaviour
     }
 
     // Reset these on game end ----
-    [SerializeField] private int playerScore = 0;
-    [SerializeField] private int highScore = 0;
+    [SerializeField] private int thingsEaten = 0; // total things eaten this run, (not shown during gameplay)
+    [SerializeField] private int mostThingsEaten = 0; // psuedo high score, shown in main menu
+
+    [SerializeField] private int resourcesCollected = 0; // total resources collected this run, (not shown during gameplay)
+    [SerializeField] private int mostResourcesCollected = 0; // psuedo high score
+
+    [SerializeField] private int thingsCrafted = 0; // total things crafted this run, (not shown during gameplay)
+    [SerializeField] private int mostThingsCrafted = 0; // psuedo high score
 
     // ----------------------------
 
-    public void AddScore(int points)
+    public void AddEaten(int points)
     {
-        playerScore += points;
-        if (playerScore > highScore)
+        thingsEaten += points;
+        if (thingsEaten > mostThingsEaten)
         {
-            highScore = playerScore;
+            mostThingsEaten = thingsEaten;
         }
     }
 
-    public int RetrieveHighScore()
+    public int RetrieveMostEaten()
     {
-        Debug.Log("Current High Score: " + highScore);
-        return highScore;
+        Debug.Log("Current Highest consumed: " + mostThingsEaten);
+        return mostThingsEaten;
+    }
+
+    public void AddResourcesGained(int points)
+    {
+        resourcesCollected += points;
+        if (resourcesCollected > mostResourcesCollected)
+        {
+            mostResourcesCollected = resourcesCollected;
+        }
+    }
+
+    public int RetrieveMostResourcesCollected()
+    {
+        Debug.Log("Current Highest resources collected: " + mostResourcesCollected);
+        return mostResourcesCollected;
+    }
+
+    public void AddCraftedCount(int points)
+    {
+        thingsCrafted += points;
+        if (thingsCrafted > mostThingsCrafted)
+        {
+            mostThingsCrafted = thingsCrafted;
+        }
+    }
+
+    public int RetrieveMostCrafted()
+    {
+        Debug.Log("Current Highest crafted: " + mostThingsCrafted);
+        return mostThingsCrafted;
     }
 
     public void ResetGame()
     {
-        playerScore = 0;
+        thingsEaten = 0;
+        resourcesCollected = 0;
+        thingsCrafted = 0;
     }
 }
