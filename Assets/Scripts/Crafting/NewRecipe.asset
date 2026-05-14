@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f9a2991700e4325b41a066a356c4c8, type: 3}
   m_Name: NewRecipe
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  itemName: 
-  icon: {fileID: 0}
-  ingredients: []
-  outputType: 0
-  outputAmount: 0
+  itemName: Water
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  ingredients:
+  - type: 0
+    amount: 3
+  outputType: 2
+  outputAmount: 1
