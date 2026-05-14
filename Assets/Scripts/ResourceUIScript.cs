@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
+using System;
 
 public class ResourceUIScript : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class ResourceUIScript : MonoBehaviour
     [SerializeField] private ElementUI UIPrefab;
     [SerializeField] private Transform UITransform;
     [SerializeField] private Transform UITransformParent;
+    [SerializeField] private TextMeshProUGUI tabText;
 
     private Dictionary<ResourceType, ElementUI> UIElements = new Dictionary<ResourceType, ElementUI>();
+    private Queue<Action> notifQueue = new Queue<Action>();
 
     private float xPos = 0;
 
     private bool animPlaying = false;
+    private bool showingPanel = false;
+    private bool notifying = false;
 
     void Start()
     {
@@ -57,7 +62,7 @@ public class ResourceUIScript : MonoBehaviour
         foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
         {
             ElementUI newElement = Instantiate(UIPrefab, UITransform);
-            newElement.Load(type, ResourceManager.Instance.GetResourceAmount(type));
+            newElement.Load(type, ResourceManager.Instance.GetResourceAmount(type), null, false);
             newElement.gameObject.SetActive(false);
 
             xPos = newElement.transform.localPosition.x;
@@ -73,6 +78,10 @@ public class ResourceUIScript : MonoBehaviour
             if (UI.getAmount() > 0 && !UI.gameObject.activeSelf) //shows the UI element when the value is greater than 0 and it was not active; essentially adds the element to the UI when it's "discovered" for the first time
             {
                 UI.gameObject.SetActive(true);
+                if (!showingPanel)
+                {
+                    enqueueNotify(() => notify(type));
+                }
             }
             UI.setAmount(amnt, "set");
         }
@@ -80,6 +89,7 @@ public class ResourceUIScript : MonoBehaviour
 
     void showPanel() {
         animPlaying = true;
+        showingPanel = true;
 
         foreach (ElementUI UI in UIElements.Values)
         {
@@ -87,15 +97,17 @@ public class ResourceUIScript : MonoBehaviour
             UI.transform.Translate(Vector3.left * 350);
         }
 
-        UITransformParent.DOMoveX(175, 0.55f).OnComplete(() =>
+        UITransformParent.DOMoveX(175, 0.25f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             float i = 0;
             foreach (ElementUI UI in UIElements.Values)
             {
-                UI.transform.DOMoveX(220, 0.25f).SetDelay(i);
+                UI.transform.DOMoveX(220, 0.25f).SetEase(Ease.OutQuad).SetDelay(i);
                 i += 0.1f;
             }
         });
+
+        tabText.enabled = true;
 
         animPlaying = false;
 
@@ -108,6 +120,9 @@ public class ResourceUIScript : MonoBehaviour
     void hidePanel()
     {
         animPlaying = true;
+        showingPanel = false;
+
+
 
         float i = 0;
         float count = 0;
@@ -124,6 +139,8 @@ public class ResourceUIScript : MonoBehaviour
                             //UIXPosition = UI.transform.position.x;
                             UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
                         }
+                        tabText.enabled = true;
+                        showNextNotify();
                     });
                 }
             });
@@ -147,4 +164,58 @@ public class ResourceUIScript : MonoBehaviour
         animPlaying = false;
 
     }
+
+    void notify(ResourceType type)
+    {
+        Debug.Log("notifying");
+        ElementUI newElement = Instantiate(UIPrefab, UITransformParent);
+        newElement.Load(type, 0, "NEW!", true);
+
+        Sequence notify = DOTween.Sequence();
+
+        notify.Append(newElement.transform.DOMoveX(225, 0.55f).SetEase(Ease.OutQuad));
+
+        notify.AppendInterval(5f);
+
+        notify.Append(newElement.transform.DOMoveX(-395, 0.55f).SetEase(Ease.OutQuad));
+
+        notify.OnComplete(() => {
+            Destroy(newElement.gameObject);
+            if (!showingPanel)
+            {
+            showNextNotify();
+            }
+            });
+
+        
+    }
+
+    //AI used below
+    public void enqueueNotify(Action method)
+    {
+        Debug.Log("queued");
+      
+        notifQueue.Enqueue(method);
+        if (!notifying)
+        {
+            showNextNotify();
+        }
+    }
+
+    private void showNextNotify()
+    {
+        if (notifQueue.Count > 0)
+        {
+            notifying = true;
+
+            Action nextFunction = notifQueue.Dequeue();
+
+            nextFunction.Invoke();
+        }
+        else
+        {
+            notifying = false;
+        }
+    }
+
 }

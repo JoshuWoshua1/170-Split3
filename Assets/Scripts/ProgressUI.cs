@@ -1,5 +1,8 @@
 using TMPro;
+using Unity.AppUI.UI;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class ProgressUI : MonoBehaviour
 {
@@ -7,6 +10,7 @@ public class ProgressUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Current;
     [SerializeField] private TextMeshProUGUI Required;
+    [SerializeField] private Image icon;
 
     private int amnt = 0;
     private int required = 0;
@@ -54,6 +58,13 @@ public class ProgressUI : MonoBehaviour
         this.Name.text = name.ToString();
         this.Current.text = curr.ToString();
         this.Required.text = req.ToString();
+
+        Sprite loadedSprite = Resources.Load<Sprite>($"ResourceIcons/{name}");
+
+        if (loadedSprite != null)
+            icon.sprite = loadedSprite;
+        else
+            Debug.LogWarning($"Could not find icon for {name}!");
     }
 
 }

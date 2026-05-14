@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78, y: -27.019}
-  m_SizeDelta: {x: 37.6021, y: 43.4385}
+  m_AnchoredPosition: {x: -5.0531006, y: -27.019}
+  m_SizeDelta: {x: 183.4961, y: 43.4385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5801456242783373273
 CanvasRenderer:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -532,3 +532,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ElementUI
   Name: {fileID: 3281652604480742132}
   Amount: {fileID: 5348660716551416443}
+  icon: {fileID: 1815458595160467487}
