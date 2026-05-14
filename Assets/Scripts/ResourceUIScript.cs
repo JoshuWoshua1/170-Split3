@@ -53,6 +53,9 @@ public class ResourceUIScript : MonoBehaviour
             if (!animPlaying)
                 hidePanel();
         }
+
+      /*  if (!notifying && !showingPanel)
+            showNextNotify();*/
     }
 
     void InitializeUI()
@@ -139,6 +142,7 @@ public class ResourceUIScript : MonoBehaviour
                             //UIXPosition = UI.transform.position.x;
                             UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
                         }
+                        animPlaying = false;
                         tabText.enabled = true;
                         showNextNotify();
                     });
@@ -158,11 +162,6 @@ public class ResourceUIScript : MonoBehaviour
                  UI.transform.position = new Vector3(xPos, UI.transform.position.y, UI.transform.position.z);
              }
          });*/
-
-
-
-        animPlaying = false;
-
     }
 
     void notify(ResourceType type)
@@ -183,9 +182,9 @@ public class ResourceUIScript : MonoBehaviour
             Destroy(newElement.gameObject);
             if (!showingPanel)
             {
-            showNextNotify();
+                showNextNotify();
             }
-            });
+        });
 
         
     }
