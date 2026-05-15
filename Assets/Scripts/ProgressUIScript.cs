@@ -10,6 +10,7 @@ public class ProgressUIScript : MonoBehaviour
 
     [SerializeField] private ProgressUI UIPrefab;
     [SerializeField] private Transform UITransform;
+    [SerializeField] private Transform UITransformParent;
 
     private Dictionary<ResourceType, ProgressUI> UIElements = new Dictionary<ResourceType, ProgressUI>();
 
@@ -20,6 +21,8 @@ public class ProgressUIScript : MonoBehaviour
     private bool meetsThresholds = false;
 
     private bool updating = false;
+
+    private bool showingPanel = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +46,18 @@ public class ProgressUIScript : MonoBehaviour
                 CheckResourceThresholds(requirement.resourceType, requirement.amount, ResourceManager.Instance.GetResourceAmount(requirement.resourceType));
             }
         }
+
+        if (UnityEngine.InputSystem.Keyboard.current.tabKey.wasPressedThisFrame) //change this later
+        {
+            if (!showingPanel)
+            {
+                showProg();
+            } else
+            {
+                hideProg();
+            }
+
+        }
     }
 
     void InitializeUI()
@@ -59,7 +74,7 @@ public class ProgressUIScript : MonoBehaviour
         }
     }
 
-    void updateProgress()
+    public void updateProgress()
     {
         updating = true;
 
@@ -109,6 +124,18 @@ public class ProgressUIScript : MonoBehaviour
             Debug.Log("updatimg");
             updateProgress();
         }
+    }
+
+    void hideProg()
+    {
+        showingPanel = false;
+        UITransformParent.transform.DOMoveY(-150, 0.75f).SetEase(Ease.OutQuad);
+    }
+
+    void showProg()
+    {
+        showingPanel=true;
+        UITransformParent.transform.DOMoveY(66, 0.75f).SetEase(Ease.OutQuad);
     }
 }
 

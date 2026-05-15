@@ -17,18 +17,22 @@ MonoBehaviour:
     resourceThresholds:
     - resourceType: 0
       amount: 2
+    - resourceType: 1
+      amount: 1
   - targetSize: 3
     resourceThresholds:
     - resourceType: 0
-      amount: 3
+      amount: 4
     - resourceType: 1
       amount: 3
+    - resourceType: 2
+      amount: 2
   - targetSize: 4
     resourceThresholds:
     - resourceType: 0
       amount: 7
     - resourceType: 1
-      amount: 4
+      amount: 6
     - resourceType: 2
       amount: 3
     - resourceType: 3

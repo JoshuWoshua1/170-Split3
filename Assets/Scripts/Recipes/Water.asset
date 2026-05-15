@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
   itemName: Water
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: e1dd43a9d01a61441ab677ec8904b7de, type: 3}
   ingredients:
   - type: 0
     amount: 3

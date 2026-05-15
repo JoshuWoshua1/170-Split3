@@ -35,7 +35,7 @@ public class CraftingUI : MonoBehaviour
     void Start()
     {
         BuildRecipeSlots();
-        inventoryPanel.transform.Translate(Vector3.right * 580);
+        inventoryPanel.transform.Translate(Vector3.right * 1300);
         //inventoryPanel.SetActive(false);
     }
 
@@ -50,18 +50,18 @@ public class CraftingUI : MonoBehaviour
 
     void ToggleInventory()
     {
-        isOpen = !isOpen;
+      
         //inventoryPanel.SetActive(isOpen);
 
-        if (isOpen)
+        if (!isOpen)
         {
             Debug.Log("open");
-            inventoryPanel.transform.DOMoveX(710f, 0.50f).SetEase(Ease.OutQuad);
+            inventoryPanel.transform.DOMoveX(1610f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
         }
         else
         {
             Debug.Log("close");
-            inventoryPanel.transform.DOMoveX(1020f, 0.50f).SetEase(Ease.OutQuad);
+            inventoryPanel.transform.DOMoveX(2000f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
         }
     }
 
@@ -73,7 +73,7 @@ public class CraftingUI : MonoBehaviour
 
             Button button = slot.GetComponent<Button>();
             Image accentBar = slot.transform.Find("AccentBar").GetComponent<Image>();
-            Image icon = slot.transform.Find("Icon").GetComponent<Image>();
+            Image icon = slot.transform.Find("Mask/Icon").GetComponent<Image>();
             icon.sprite = recipe.icon;
 
             TextMeshProUGUI nameLabel = slot.transform.Find("Info/ItemName").GetComponent<TextMeshProUGUI>();
@@ -89,7 +89,7 @@ public class CraftingUI : MonoBehaviour
             if (existingLayout != null) Destroy(existingLayout);
 
             GridLayoutGroup pillGrid = pillParent.gameObject.AddComponent<GridLayoutGroup>();
-            pillGrid.cellSize = new Vector2(70, 50);
+            pillGrid.cellSize = new Vector2(40, 17);
             pillGrid.spacing = new Vector2(4, 4);
             pillGrid.startCorner = GridLayoutGroup.Corner.UpperLeft;
             pillGrid.startAxis = GridLayoutGroup.Axis.Horizontal;
@@ -113,6 +113,8 @@ public class CraftingUI : MonoBehaviour
                 pillLayout.childAlignment = TextAnchor.MiddleCenter;
                 pillLayout.childForceExpandWidth = false;
                 pillLayout.childForceExpandHeight = false;
+                pillLayout.childControlWidth = true;
+                pillLayout.childControlHeight = true;
 
                 // no ContentSizeFitter on pill — grid controls sizing now
                 LayoutElement pillMinSize = pill.AddComponent<LayoutElement>();
@@ -124,12 +126,15 @@ public class CraftingUI : MonoBehaviour
 
                 TextMeshProUGUI pillText = textObj.AddComponent<TextMeshProUGUI>();
                 pillText.text = $"{ingredient.amount}x {ingredient.type}";
-                pillText.fontSize = 12;
+                pillText.fontSize = 8;
                 pillText.color = haveColor;
                 pillText.textWrappingMode = TextWrappingModes.NoWrap;
                 pillText.overflowMode = TextOverflowModes.Overflow;
                 pillText.margin = new Vector4(0, 0, 0, 0);
                 pillText.alignment = TextAlignmentOptions.Center;
+                pillText.enableAutoSizing = true;
+                pillText.fontSizeMin = 6.5f;  
+                pillText.fontSizeMax = 15f; 
 
                 pillBgs.Add(pillBg);
                 pillTexts.Add(pillText);
