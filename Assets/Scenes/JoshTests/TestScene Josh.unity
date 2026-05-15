@@ -445,6 +445,7 @@ MonoBehaviour:
   sizeRequirement: 1
   resourceType: 00000000
   resourceAmount: 03000000
+  consumeParticles: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
 --- !u!135 &619090793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -819,6 +820,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   thingsEaten: 0
   mostThingsEaten: 0
+  resourcesCollected: 0
+  mostResourcesCollected: 0
+  thingsCrafted: 0
+  mostThingsCrafted: 0
 --- !u!4 &813841789
 Transform:
   m_ObjectHideFlags: 0
@@ -970,6 +975,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 893312782619615483, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
+      propertyPath: consumeParticles
+      value: 
+      objectReference: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
     - target: {fileID: 1016280903755847747, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
       propertyPath: m_Name
       value: EnemyTest_Base
@@ -1131,6 +1140,7 @@ MonoBehaviour:
   sizeRequirement: 1
   resourceType: 00000000
   resourceAmount: 03000000
+  consumeParticles: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
 --- !u!135 &2132482997
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1232,6 +1242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3633473856940104064, guid: 81b6b9418a3b58e4a84334df55f29261, type: 3}
+      propertyPath: consumeParticles
+      value: 
+      objectReference: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
     - target: {fileID: 5877166482380143195, guid: 81b6b9418a3b58e4a84334df55f29261, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.09
@@ -1329,6 +1343,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3531285036122234610, guid: 6ee514dbf772eb64fabc9e20c782125c, type: 3}
+      propertyPath: consumeParticles
+      value: 
+      objectReference: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
     - target: {fileID: 3710548421334869578, guid: 6ee514dbf772eb64fabc9e20c782125c, type: 3}
       propertyPath: m_Name
       value: EnemyTest_Size_2
@@ -1346,6 +1364,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1730436639229981416, guid: 379edb882f1f3564abdd9b8a8abd7def, type: 3}
+      propertyPath: consumeParticles
+      value: 
+      objectReference: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
     - target: {fileID: 1908576067978086992, guid: 379edb882f1f3564abdd9b8a8abd7def, type: 3}
       propertyPath: m_Name
       value: EnemyTest_Size_3
@@ -1464,6 +1486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2073478921535007673, guid: e4058bbdbe3bc254e83dc77416bbfc6d, type: 3}
+      propertyPath: consumeParticles
+      value: 
+      objectReference: {fileID: 8930908635196347856, guid: 9dfaf16e33c4cd94088a7f151061dd44, type: 3}
     - target: {fileID: 2213900958820225793, guid: e4058bbdbe3bc254e83dc77416bbfc6d, type: 3}
       propertyPath: m_Name
       value: EnemyTest_Size_4

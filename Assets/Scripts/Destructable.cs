@@ -5,6 +5,7 @@ public class Destructable : MonoBehaviour
     public float sizeRequirement = 1f; // player size required to consume this object 
     [SerializeField] private ResourceType[] resourceType; // type(s) of resource this object provides
     [SerializeField] private int[] resourceAmount = {1}; // amount(s) of resource this object provides
+    [SerializeField] private GameObject consumeParticles; // particles
 
     ResourceManager resourceManager;
     Collider objectCollider;
@@ -44,6 +45,12 @@ public class Destructable : MonoBehaviour
             }
             //resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
             GameManager.Instance.AddEaten(1);
+
+            if (consumeParticles != null)
+            {
+                Instantiate(consumeParticles, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject); // destroy object after consumption.
         }
     }
