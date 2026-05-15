@@ -797,6 +797,7 @@ MonoBehaviour:
   sizeRequirement: 2
   resourceType: 0000000001000000
   resourceAmount: 0500000005000000
+  consumeParticles: {fileID: 0}
 --- !u!135 &475885361
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -925,6 +926,7 @@ MonoBehaviour:
   sizeRequirement: 1
   resourceType: 00000000
   resourceAmount: 01000000
+  consumeParticles: {fileID: 0}
 --- !u!135 &619090793
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1969,6 +1971,7 @@ MonoBehaviour:
   sizeRequirement: 2
   resourceType: 0200000003000000
   resourceAmount: 0300000002000000
+  consumeParticles: {fileID: 0}
 --- !u!135 &1309157544
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2335,7 +2338,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: cb4f08290f338b44ea70ca1ff1799532, type: 2}
   m_InitialState: 0
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -2396,6 +2399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   player: {fileID: 325968491}
   cutscene: {fileID: 1788255343}
+  sizeToFinish: 4
 --- !u!1 &1810341289
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2900,7 @@ MonoBehaviour:
   sizeUpData: {fileID: 11400000, guid: bec49d5b667c9fd4995290677c73c1ac, type: 2}
   UIPrefab: {fileID: 227052568056653193, guid: b09d70a1c7e89114083903bcb25fa4ff, type: 3}
   UITransform: {fileID: 2000347906}
+  UITransformParent: {fileID: 0}
 --- !u!114 &2000347908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,7 +3078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2087157823
 Transform:
   m_ObjectHideFlags: 0
@@ -3125,6 +3130,7 @@ MonoBehaviour:
   sizeRequirement: 1
   resourceType: 00000000
   resourceAmount: 01000000
+  consumeParticles: {fileID: 0}
 --- !u!135 &2132482997
 SphereCollider:
   m_ObjectHideFlags: 0
