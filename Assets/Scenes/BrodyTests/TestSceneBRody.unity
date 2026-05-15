@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.69411767}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1267,7 +1267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -289, y: 410}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556385865
@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CraftingManager
   allRecipes:
   - {fileID: 11400000, guid: 8ebe775c414414c1696798356f82e3cb, type: 2}
+  - {fileID: 11400000, guid: 4acd4c6717cc745a8bf39de47279cdff, type: 2}
 --- !u!4 &1650368122
 Transform:
   m_ObjectHideFlags: 0

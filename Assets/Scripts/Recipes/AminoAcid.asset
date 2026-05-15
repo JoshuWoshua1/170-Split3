@@ -10,12 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87f9a2991700e4325b41a066a356c4c8, type: 3}
-  m_Name: NewRecipe
+  m_Name: AminoAcid
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  itemName: Water
+  itemName: Amino Acid
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   ingredients:
   - type: 0
-    amount: 3
+    amount: 2
+  - type: 1
+    amount: 2
   outputType: 2
   outputAmount: 1
