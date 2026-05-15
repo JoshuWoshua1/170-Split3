@@ -238,7 +238,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2163395119173981805}
-  - component: {fileID: 5508647886632425389}
   m_Layer: 0
   m_Name: Pills
   m_TagString: Untagged
@@ -255,7 +254,7 @@ RectTransform:
   m_GameObject: {fileID: 7146589722551773213}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.63885427, y: 0.331619, z: 0.39014}
+  m_LocalScale: {x: 0.77461076, y: 0.38550708, z: 0.39014}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2207745112298892665}
@@ -265,32 +264,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5508647886632425389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7146589722551773213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 4
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &7522896385704078801
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +292,7 @@ RectTransform:
   m_GameObject: {fileID: 7522896385704078801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.404262, y: 1.2826984, z: 0.81436}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4195502374696563252}
@@ -329,7 +302,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 596.9973, y: 309.24933}
+  m_AnchoredPosition: {x: 504.98, y: 312.66}
   m_SizeDelta: {x: 481.9946, y: 120.4987}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9220481243907594332

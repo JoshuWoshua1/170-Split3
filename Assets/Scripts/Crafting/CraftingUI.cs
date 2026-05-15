@@ -71,6 +71,19 @@ public class CraftingUI : MonoBehaviour
             foreach (Transform child in pillParent)
                 Destroy(child.gameObject);
 
+            // remove HorizontalLayoutGroup and replace with GridLayoutGroup
+            HorizontalLayoutGroup existingLayout = pillParent.GetComponent<HorizontalLayoutGroup>();
+            if (existingLayout != null) Destroy(existingLayout);
+
+            GridLayoutGroup pillGrid = pillParent.gameObject.AddComponent<GridLayoutGroup>();
+            pillGrid.cellSize = new Vector2(120, 40);
+            pillGrid.spacing = new Vector2(4, 4);
+            pillGrid.startCorner = GridLayoutGroup.Corner.UpperLeft;
+            pillGrid.startAxis = GridLayoutGroup.Axis.Horizontal;
+            pillGrid.childAlignment = TextAnchor.UpperLeft;
+            pillGrid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            pillGrid.constraintCount = 2;
+
             List<Image> pillBgs = new();
             List<TextMeshProUGUI> pillTexts = new();
 
@@ -83,18 +96,15 @@ public class CraftingUI : MonoBehaviour
                 pillBg.color = havePillBg;
 
                 HorizontalLayoutGroup pillLayout = pill.AddComponent<HorizontalLayoutGroup>();
-                pillLayout.padding = new RectOffset(10, 10, 4, 4);
+                pillLayout.padding = new RectOffset(10, 10, 8, 8);
                 pillLayout.childAlignment = TextAnchor.MiddleCenter;
                 pillLayout.childForceExpandWidth = false;
                 pillLayout.childForceExpandHeight = false;
 
-                ContentSizeFitter pillFitter = pill.AddComponent<ContentSizeFitter>();
-                pillFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-                pillFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
+                // no ContentSizeFitter on pill — grid controls sizing now
                 LayoutElement pillMinSize = pill.AddComponent<LayoutElement>();
                 pillMinSize.minWidth = 80;
-                pillMinSize.minHeight = 24;
+                pillMinSize.minHeight = 40;
 
                 GameObject textObj = new GameObject("PillText", typeof(RectTransform));
                 textObj.transform.SetParent(pill.transform, false);
@@ -103,7 +113,7 @@ public class CraftingUI : MonoBehaviour
                 pillText.text = $"{ingredient.amount}x {ingredient.type}";
                 pillText.fontSize = 14;
                 pillText.color = haveColor;
-                pillText.enableWordWrapping = false;
+                pillText.textWrappingMode = TextWrappingModes.NoWrap;
                 pillText.overflowMode = TextOverflowModes.Overflow;
                 pillText.margin = new Vector4(0, 0, 0, 0);
                 pillText.alignment = TextAlignmentOptions.Center;
