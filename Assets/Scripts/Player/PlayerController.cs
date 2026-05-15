@@ -102,7 +102,10 @@ public class PlayerController : MonoBehaviour
             }
             if (meetsThresholds && size < tier.targetSize)
             {
-                progScript.updateProgress();
+                if (progScript != null)
+                {
+                    progScript.updateProgress();
+                }
                 foreach (ResourceRequirement requirement in tier.resourceThresholds)
                 {
                     ResourceManager.Instance.RemoveResource(requirement.resourceType, requirement.amount); // remove resources used for upgrade from resource manager.
