@@ -41,21 +41,37 @@ public class ResourceUIScript : MonoBehaviour
             checkResource(type, ResourceManager.Instance.GetResourceAmount(type));
         }
 
-        if (UnityEngine.InputSystem.Keyboard.current.qKey.wasPressedThisFrame) //change this later
+        if (UnityEngine.InputSystem.Keyboard.current.eKey.wasPressedThisFrame) //change this later
         {
             Debug.Log("showing panel");
             if (!animPlaying)
                 showPanel();
         }
-        if (UnityEngine.InputSystem.Keyboard.current.qKey.wasReleasedThisFrame) //change this later
+        if (UnityEngine.InputSystem.Keyboard.current.eKey.wasReleasedThisFrame) //change this later
         {
             Debug.Log("hiding panel");
             if (!animPlaying)
                 hidePanel();
         }
+        if (UnityEngine.InputSystem.Keyboard.current.tabKey.wasPressedThisFrame) //change this later
+        {
+            if (!animPlaying)
+            {
+                if (!showingPanel)
+                {
+                    showPanel();
+                }
+                else
+                {
+                    hidePanel();
+                }
 
-      /*  if (!notifying && !showingPanel)
-            showNextNotify();*/
+            }
+
+        }
+
+        /*  if (!notifying && !showingPanel)
+              showNextNotify();*/
     }
 
     void InitializeUI()
@@ -69,7 +85,7 @@ public class ResourceUIScript : MonoBehaviour
             newElement.gameObject.SetActive(false);
 
             xPos = newElement.transform.localPosition.x;
-            
+
             UIElements.Add(type, newElement);
         }
     }
@@ -81,16 +97,16 @@ public class ResourceUIScript : MonoBehaviour
             if (UI.getAmount() > 0 && !UI.gameObject.activeSelf) //shows the UI element when the value is greater than 0 and it was not active; essentially adds the element to the UI when it's "discovered" for the first time
             {
                 UI.gameObject.SetActive(true);
-                if (!showingPanel)
-                {
-                    enqueueNotify(() => notify(type));
-                }
+
+                enqueueNotify(() => notify(type));
+
             }
             UI.setAmount(amnt, "set");
         }
     }
 
-    void showPanel() {
+    void showPanel()
+    {
         animPlaying = true;
         showingPanel = true;
 
@@ -136,7 +152,8 @@ public class ResourceUIScript : MonoBehaviour
                 count++;
                 if (count == UIElements.Count)
                 {
-                    UITransformParent.DOMoveX(-175, 0.55f).OnComplete(() => {
+                    UITransformParent.DOMoveX(-175, 0.55f).OnComplete(() =>
+                    {
                         foreach (ElementUI UI in UIElements.Values)
                         {
                             //UIXPosition = UI.transform.position.x;
@@ -149,11 +166,11 @@ public class ResourceUIScript : MonoBehaviour
                 }
             });
             i += 0.1f;
-            
+
         }
 
 
-        
+
         /* UITransformParent.DOMoveX(-175, 0.75f).OnComplete(() =>
          {
              foreach (ElementUI UI in UIElements.Values)
@@ -178,7 +195,8 @@ public class ResourceUIScript : MonoBehaviour
 
         notify.Append(newElement.transform.DOMoveX(-395, 0.55f).SetEase(Ease.OutQuad));
 
-        notify.OnComplete(() => {
+        notify.OnComplete(() =>
+        {
             Destroy(newElement.gameObject);
             if (!showingPanel)
             {
@@ -186,18 +204,19 @@ public class ResourceUIScript : MonoBehaviour
             }
         });
 
-        
+
     }
 
     //AI used below
     public void enqueueNotify(Action method)
     {
         Debug.Log("queued");
-      
+
         notifQueue.Enqueue(method);
         if (!notifying)
         {
-            showNextNotify();
+            if (!showingPanel)
+                showNextNotify();
         }
     }
 

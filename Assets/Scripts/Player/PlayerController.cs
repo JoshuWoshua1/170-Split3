@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     // add scriptable object reference for resource thresholds for size upgrades.
     [SerializeField] private SizeUp_Data sizeUpData;
+
+    [SerializeField] private ProgressUIScript progScript; //haphazard solution to issue
     public static PlayerController Instance { get; private set; }
     [SerializeField] private float moveSpeed = 5f; 
     public float size = 1f;
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
             }
             if (meetsThresholds && size < tier.targetSize)
             {
+                progScript.updateProgress();
                 foreach (ResourceRequirement requirement in tier.resourceThresholds)
                 {
                     ResourceManager.Instance.RemoveResource(requirement.resourceType, requirement.amount); // remove resources used for upgrade from resource manager.

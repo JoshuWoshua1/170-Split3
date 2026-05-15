@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f9a2991700e4325b41a066a356c4c8, type: 3}
+  m_Name: DNA
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  itemName: Deoxyribose
+  icon: {fileID: 21300000, guid: 080faca2153bb89448112b101f67c027, type: 3}
+  ingredients:
+  - type: 0
+    amount: 2
+  - type: 1
+    amount: 3
+  - type: 2
+    amount: 1
+  outputType: 3
+  outputAmount: 1
