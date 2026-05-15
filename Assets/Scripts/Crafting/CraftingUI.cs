@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class CraftingUI : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CraftingUI : MonoBehaviour
 
     [Header("Colors")]
     [SerializeField] private Color craftableAccent = new Color(0.298f, 0.686f, 0.314f);
-    [SerializeField] private Color notCraftableAccent = new Color(0.333f, 0.333f, 0.333f);
+    [SerializeField] private Color notCraftableAccent = new Color(0f, 0f, 0f);
     [SerializeField] private Color haveColor = new Color(0.506f, 0.784f, 0.518f);
     [SerializeField] private Color needColor = new Color(0.898f, 0.451f, 0.451f);
     [SerializeField] private Color havePillBg = new Color(0.118f, 0.239f, 0.118f);
@@ -34,7 +35,8 @@ public class CraftingUI : MonoBehaviour
     void Start()
     {
         BuildRecipeSlots();
-        inventoryPanel.SetActive(false);
+        inventoryPanel.transform.Translate(Vector3.right * 580);
+        //inventoryPanel.SetActive(false);
     }
 
     void Update()
@@ -49,7 +51,18 @@ public class CraftingUI : MonoBehaviour
     void ToggleInventory()
     {
         isOpen = !isOpen;
-        inventoryPanel.SetActive(isOpen);
+        //inventoryPanel.SetActive(isOpen);
+
+        if (isOpen)
+        {
+            Debug.Log("open");
+            inventoryPanel.transform.DOMoveX(710f, 0.50f).SetEase(Ease.OutQuad);
+        }
+        else
+        {
+            Debug.Log("close");
+            inventoryPanel.transform.DOMoveX(1020f, 0.50f).SetEase(Ease.OutQuad);
+        }
     }
 
     void BuildRecipeSlots()
@@ -76,7 +89,7 @@ public class CraftingUI : MonoBehaviour
             if (existingLayout != null) Destroy(existingLayout);
 
             GridLayoutGroup pillGrid = pillParent.gameObject.AddComponent<GridLayoutGroup>();
-            pillGrid.cellSize = new Vector2(120, 40);
+            pillGrid.cellSize = new Vector2(70, 50);
             pillGrid.spacing = new Vector2(4, 4);
             pillGrid.startCorner = GridLayoutGroup.Corner.UpperLeft;
             pillGrid.startAxis = GridLayoutGroup.Axis.Horizontal;
@@ -111,7 +124,7 @@ public class CraftingUI : MonoBehaviour
 
                 TextMeshProUGUI pillText = textObj.AddComponent<TextMeshProUGUI>();
                 pillText.text = $"{ingredient.amount}x {ingredient.type}";
-                pillText.fontSize = 14;
+                pillText.fontSize = 12;
                 pillText.color = haveColor;
                 pillText.textWrappingMode = TextWrappingModes.NoWrap;
                 pillText.overflowMode = TextOverflowModes.Overflow;
