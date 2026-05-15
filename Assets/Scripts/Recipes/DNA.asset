@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f9a2991700e4325b41a066a356c4c8, type: 3}
   m_Name: DNA
   m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
-  itemName: Water
-  icon: {fileID: 21300000, guid: e1dd43a9d01a61441ab677ec8904b7de, type: 3}
+  itemName: Deoxyribose
+  icon: {fileID: 21300000, guid: 080faca2153bb89448112b101f67c027, type: 3}
   ingredients:
   - type: 0
+    amount: 2
+  - type: 1
     amount: 3
-  outputType: 2
+  - type: 2
+    amount: 1
+  outputType: 3
   outputAmount: 1

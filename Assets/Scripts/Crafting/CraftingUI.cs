@@ -61,7 +61,7 @@ public class CraftingUI : MonoBehaviour
         else
         {
             Debug.Log("close");
-            inventoryPanel.transform.DOMoveX(2000f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
+            inventoryPanel.transform.DOMoveX(2600f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
         }
     }
 

@@ -129,13 +129,13 @@ public class ProgressUIScript : MonoBehaviour
     void hideProg()
     {
         showingPanel = false;
-        UITransformParent.transform.DOMoveY(-150, 0.75f).SetEase(Ease.OutQuad);
+        UITransformParent.transform.DOMoveY(-150, 1f).SetEase(Ease.OutQuart);
     }
 
     void showProg()
     {
         showingPanel=true;
-        UITransformParent.transform.DOMoveY(66, 0.75f).SetEase(Ease.OutQuad);
+        UITransformParent.transform.DOMoveY(66, 1f).SetEase(Ease.OutQuad);
     }
 }
 
