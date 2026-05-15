@@ -20,7 +20,8 @@ public class Enemy : MonoBehaviour
     private Vector2 roamNoiseOffset; // unique noise seed
     private Vector3 currentRoamDirection;
     private bool spawnTracking = true; // flag to prevent roaming and player scanning until spawn tracking is complete
-    
+    [SerializeField] private GameObject consumeParticles; // particles
+
     ResourceManager resourceManager;
     Collider enemyCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -198,6 +199,16 @@ public class Enemy : MonoBehaviour
         }
         //resourceManager.AddResource(resourceType, resourceAmount); // add resource to resource manager.
         GameManager.Instance.AddEaten(1);
+
+        if (consumeParticles != null)
+        {
+            Instantiate(
+                consumeParticles,
+                transform.position + Vector3.up * 0.5f,
+                Quaternion.identity
+            );
+        }
+
         Destroy(gameObject); // destroy object after consumption.
     }
 
