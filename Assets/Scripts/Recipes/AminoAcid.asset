@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c1b40185952f9c247896618efa5b21e1, type: 3}
   ingredients:
   - type: 0
-    amount: 2
+    amount: 5
   - type: 1
     amount: 2
   outputType: 2

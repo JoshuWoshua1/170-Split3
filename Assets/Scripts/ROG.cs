@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class ROG : MonoBehaviour
 {
-    [SerializeField] private GameObject waterPrefab;
-    [SerializeField] private GameObject glucosePrefab;
-    [SerializeField] private GameObject aminoAcidPrefab;
-    [SerializeField] private GameObject deoxyribosePrefab;
+    [System.Serializable]
+    private struct ResourceEntry
+    {
+        public GameObject prefab;
+        public int count;
+    }
 
-    [SerializeField] private int waterCount = 25;
-    [SerializeField] private int glucoseCount = 15;
-    [SerializeField] private int aminoAcidCount = 10;
-    [SerializeField] private int deoxyriboseCount = 5;
+    [SerializeField] private ResourceEntry[] resources;
 
     [SerializeField] private Vector2 spawnArea = new Vector2(100f, 100f);
     [SerializeField] private float spawnHeight = 0.2f;
@@ -25,12 +24,17 @@ public class ROG : MonoBehaviour
 
     private void SpawnResources()
     {
-        SpawnResourceType(waterPrefab, waterCount);
-        SpawnResourceType(glucosePrefab, glucoseCount);
-        SpawnResourceType(aminoAcidPrefab, aminoAcidCount);
-        SpawnResourceType(deoxyribosePrefab, deoxyriboseCount);
+        int total = 0;
+        foreach (ResourceEntry entry in resources)
+        {
+            if (entry.prefab != null)
+            {
+                SpawnResourceType(entry.prefab, entry.count);
+                total += entry.count;
+            }
+        }
 
-        Debug.Log($"ROG: Spawned {waterCount + glucoseCount + aminoAcidCount + deoxyriboseCount} total resources");
+        Debug.Log($"ROG: Spawned {total} total resources");
     }
 
     private void SpawnResourceType(GameObject prefab, int count)

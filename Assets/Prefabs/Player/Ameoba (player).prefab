@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   sizeUpData: {fileID: 11400000, guid: bec49d5b667c9fd4995290677c73c1ac, type: 2}
+  progScript: {fileID: 0}
   moveSpeed: 5
   size: 1
 --- !u!1 &7114261965642347771
@@ -331,9 +332,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e21d2ab26211f4ba97bff22fff60a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 1016280903755847747, guid: 41e5cc6b4a55fe24794575e957568420, type: 3}
+  enemyPrefabs:
+  - {fileID: 1016280903755847747, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
+  - {fileID: 3710548421334869578, guid: 6ee514dbf772eb64fabc9e20c782125c, type: 3}
+  - {fileID: 1908576067978086992, guid: 379edb882f1f3564abdd9b8a8abd7def, type: 3}
+  - {fileID: 2213900958820225793, guid: e4058bbdbe3bc254e83dc77416bbfc6d, type: 3}
   spawnRadius: 20
   despawnRadius: 29
   scaleMultiplier: 0.5
   spawnInterval: 5
   maxEnemies: 10
+  maxLargeEnemies: 3

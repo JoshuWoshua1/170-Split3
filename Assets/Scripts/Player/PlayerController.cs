@@ -99,15 +99,17 @@ public class PlayerController : MonoBehaviour
                 if (ResourceManager.Instance.GetResourceAmount(requirement.resourceType) < requirement.amount)
                 {
                     meetsThresholds = false;
+                    Debug.Log("you are missing " + (requirement.amount - ResourceManager.Instance.GetResourceAmount(requirement.resourceType)) + " of " + requirement.resourceType);
                     break;
                 }
             }
             if (meetsThresholds && size < tier.targetSize)
             {
-                if (progScript != null)
+                /* if (progScript != null)
                 {
                     progScript.updateProgress();
-                }
+                    Debug.Log("Progress updated in PlayerController");
+                } */
                 foreach (ResourceRequirement requirement in tier.resourceThresholds)
                 {
                     ResourceManager.Instance.RemoveResource(requirement.resourceType, requirement.amount); // remove resources used for upgrade from resource manager.

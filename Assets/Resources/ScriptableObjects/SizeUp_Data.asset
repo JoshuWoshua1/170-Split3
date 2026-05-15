@@ -16,28 +16,28 @@ MonoBehaviour:
   - targetSize: 2
     resourceThresholds:
     - resourceType: 0
-      amount: 2
+      amount: 4
   - targetSize: 3
     resourceThresholds:
     - resourceType: 0
-      amount: 5
+      amount: 10
     - resourceType: 1
-      amount: 3
+      amount: 4
   - targetSize: 4
-    resourceThresholds:
-    - resourceType: 0
-      amount: 4
-    - resourceType: 1
-      amount: 4
-    - resourceType: 2
-      amount: 4
-  - targetSize: 5
     resourceThresholds:
     - resourceType: 0
       amount: 10
     - resourceType: 1
       amount: 5
     - resourceType: 2
-      amount: 5
+      amount: 3
+  - targetSize: 5
+    resourceThresholds:
+    - resourceType: 0
+      amount: 10
+    - resourceType: 1
+      amount: 6
+    - resourceType: 2
+      amount: 4
     - resourceType: 3
-      amount: 5
+      amount: 2
