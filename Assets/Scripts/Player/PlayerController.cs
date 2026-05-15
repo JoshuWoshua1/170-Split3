@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
+    public bool IsMoving => moveInput.sqrMagnitude > 0.01f;
+
     private void CheckResourceThresholds()
     {
         foreach (SizeTier tier in sizeUpData.tiers)
