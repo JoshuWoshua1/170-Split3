@@ -181,7 +181,7 @@ public class Enemy : MonoBehaviour
         {
             if (canDoDamage)
             {
-                Debug.Log("Enemy damaged the player!");
+                //Debug.Log("Enemy damaged the player!");
             } else eatEnemy();
         }
     }

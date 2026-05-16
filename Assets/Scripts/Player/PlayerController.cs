@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
     private CharacterController characterController;
-
+    [SerializeField] private ParticleSystem gooTrail;
     public void Awake()
     {
         if (Instance == null)
@@ -69,17 +69,23 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SmoothScale(Vector3 targetScale, float duration)
     {
+        var particleMain = gooTrail.main;
+        var particleEmission = gooTrail.emission;
         Vector3 initialScale = transform.localScale;
+
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             transform.localScale = Vector3.Lerp(initialScale, targetScale, elapsed / duration);
+            particleMain.startSize = Mathf.Lerp(particleMain.startSize.constant, targetScale.x, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         transform.localScale = targetScale;
+        particleMain.startSize = targetScale.x;
+        particleEmission.rateOverDistance = particleEmission.rateOverDistance.constant * 0.75f;
     }
 
     public void OnMove(InputValue value)
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
                 if (ResourceManager.Instance.GetResourceAmount(requirement.resourceType) < requirement.amount)
                 {
                     meetsThresholds = false;
-                    Debug.Log("you are missing " + (requirement.amount - ResourceManager.Instance.GetResourceAmount(requirement.resourceType)) + " of " + requirement.resourceType);
+                    //Debug.Log("you are missing " + (requirement.amount - ResourceManager.Instance.GetResourceAmount(requirement.resourceType)) + " of " + requirement.resourceType);
                     break;
                 }
             }

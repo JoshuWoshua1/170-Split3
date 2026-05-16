@@ -14,6 +14,7 @@ public class ROG : MonoBehaviour
     [SerializeField] private Vector2 spawnArea = new Vector2(100f, 100f);
     [SerializeField] private float spawnHeight = 0.2f;
     [SerializeField] private float minDistance = 1.5f;
+    [SerializeField] private float spawnZoneRadius = 2f; // Radius around the player where resources will not spawn
 
     private System.Collections.Generic.List<Vector3> spawnedPositions = new System.Collections.Generic.List<Vector3>();
 
@@ -82,6 +83,10 @@ public class ROG : MonoBehaviour
                 return false;
             }
         }
+        if (Vector3.Distance(position, Vector3.zero) < spawnZoneRadius)
+        {
+            return false;
+        }
         return true;
     }
 
@@ -89,5 +94,8 @@ public class ROG : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(new Vector3(0, spawnHeight, 0), new Vector3(spawnArea.x, 0.1f, spawnArea.y));
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(Vector3.zero, spawnZoneRadius);
     }
 }

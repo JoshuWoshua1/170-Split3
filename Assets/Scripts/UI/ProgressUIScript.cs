@@ -46,18 +46,6 @@ public class ProgressUIScript : MonoBehaviour
                 CheckResourceThresholds(requirement.resourceType, requirement.amount, ResourceManager.Instance.GetResourceAmount(requirement.resourceType));
             }
         }
-
-        if (UnityEngine.InputSystem.Keyboard.current.tabKey.wasPressedThisFrame) //change this later
-        {
-            if (!showingPanel)
-            {
-                showProg();
-            } else
-            {
-                hideProg();
-            }
-
-        }
     }
 
     void InitializeUI()
@@ -121,7 +109,7 @@ public class ProgressUIScript : MonoBehaviour
             {
                 UI.setAmount(curr, amnt, "set");
             }
-            Debug.Log("updatimg");
+            Debug.Log("updatimg progress UI");
             updateProgress();
         }
     }
@@ -136,6 +124,18 @@ public class ProgressUIScript : MonoBehaviour
     {
         showingPanel=true;
         UITransformParent.transform.DOMoveY(66, 1f).SetEase(Ease.OutQuad);
+    }
+
+    public void ToggleProgressPanel()
+    {
+        if (showingPanel)
+        {
+            hideProg();
+        }
+        else
+        {
+            showProg();
+        }
     }
 }
 

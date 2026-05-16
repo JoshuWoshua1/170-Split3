@@ -16,6 +16,7 @@ public class ResourceManager : MonoBehaviour
     private Dictionary<ResourceType, int> resources = new Dictionary<ResourceType, int>(); // dictionary for storing resource types and their quantities
 
     [SerializeField] private TextMeshProUGUI debugText; // debug text for displaying resource info. remove when UI scripts are made.
+    [SerializeField] private ResourcesGainedUI resourceGainedUI;
 
     private void Awake() // singleton behavior
     {
@@ -55,6 +56,7 @@ public class ResourceManager : MonoBehaviour
         if (resources.ContainsKey(type))
         {
             resources[type] += amount; // add specified amount to the resource type in the dictionary.
+            resourceGainedUI.DisplayResourceGained(type, amount);
         } else Debug.LogWarning("Resource type " + type + " not found in dictionary.");
     }
 

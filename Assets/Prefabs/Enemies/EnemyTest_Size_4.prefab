@@ -29,6 +29,18 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 893312782619615483, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
+      propertyPath: 'resourceType.Array.data[1]'
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 893312782619615483, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
+      propertyPath: 'resourceType.Array.data[2]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 893312782619615483, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
+      propertyPath: 'resourceType.Array.data[3]'
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 893312782619615483, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
       propertyPath: 'resourceAmount.Array.data[0]'
       value: 4
       objectReference: {fileID: 0}
@@ -46,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1016280903755847747, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
       propertyPath: m_Name
-      value: EnemyTest_Size_4 Variant
+      value: EnemyTest_Size_4
       objectReference: {fileID: 0}
     - target: {fileID: 4197890360334316373, guid: 8acbb55e5874f90468b5e3e4443b706e, type: 3}
       propertyPath: m_LocalPosition.x

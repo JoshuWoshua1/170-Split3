@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public int RetrieveMostEaten()
     {
-        Debug.Log("Current Highest consumed: " + mostThingsEaten);
+        //Debug.Log("Current Highest consumed: " + mostThingsEaten);
         return mostThingsEaten;
     }
 
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
 
     public int RetrieveMostResourcesCollected()
     {
-        Debug.Log("Current Highest resources collected: " + mostResourcesCollected);
+        //Debug.Log("Current Highest resources collected: " + mostResourcesCollected);
         return mostResourcesCollected;
     }
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public int RetrieveMostCrafted()
     {
-        Debug.Log("Current Highest crafted: " + mostThingsCrafted);
+        //Debug.Log("Current Highest crafted: " + mostThingsCrafted);
         return mostThingsCrafted;
     }
 

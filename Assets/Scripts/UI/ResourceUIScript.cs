@@ -53,22 +53,6 @@ public class ResourceUIScript : MonoBehaviour
             if (!animPlaying)
                 hidePanel();
         }
-        if (UnityEngine.InputSystem.Keyboard.current.tabKey.wasPressedThisFrame) //change this later
-        {
-            if (!animPlaying)
-            {
-                if (!showingPanel)
-                {
-                    showPanel();
-                }
-                else
-                {
-                    hidePanel();
-                }
-
-            }
-
-        }
 
         /*  if (!notifying && !showingPanel)
               showNextNotify();*/
@@ -233,6 +217,18 @@ public class ResourceUIScript : MonoBehaviour
         else
         {
             notifying = false;
+        }
+    }
+
+    public void ToggleResourcePanel()
+    {
+        if (showingPanel)
+        {
+            hidePanel();
+        }
+        else
+        {
+            showPanel();
         }
     }
 

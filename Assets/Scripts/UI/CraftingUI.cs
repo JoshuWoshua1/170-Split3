@@ -41,14 +41,11 @@ public class CraftingUI : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.tabKey.wasPressedThisFrame)
-            ToggleInventory();
-
         if (isOpen)
             RefreshSlots();
     }
 
-    void ToggleInventory()
+    public void ToggleCraftingUI()
     {
       
         //inventoryPanel.SetActive(isOpen);
@@ -56,12 +53,14 @@ public class CraftingUI : MonoBehaviour
         if (!isOpen)
         {
             Debug.Log("open");
-            inventoryPanel.transform.DOMoveX(1610f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
+            isOpen = true;
+            inventoryPanel.transform.DOMoveX(1610f, 1f).SetEase(Ease.OutQuad);//.OnComplete(() => { isOpen = !isOpen; });
         }
         else
         {
             Debug.Log("close");
-            inventoryPanel.transform.DOMoveX(2600f, 1f).SetEase(Ease.OutQuad).OnComplete(() => { isOpen = !isOpen; });
+            isOpen = false;
+            inventoryPanel.transform.DOMoveX(2600f, 1f).SetEase(Ease.OutQuad);//.OnComplete(() => { isOpen = !isOpen; });
         }
     }
 

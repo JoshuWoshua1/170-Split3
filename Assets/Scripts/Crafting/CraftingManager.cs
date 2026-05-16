@@ -27,7 +27,7 @@ public class CraftingManager : MonoBehaviour
     {
         if (!CanCraft(recipe))
         {
-            Debug.Log($"Cannot craft {recipe.itemName}: insufficient resources.");
+            //Debug.Log($"Cannot craft {recipe.itemName}: insufficient resources.");
             return false;
         }
 
@@ -35,7 +35,8 @@ public class CraftingManager : MonoBehaviour
             ResourceManager.Instance.RemoveResource(ingredient.type, ingredient.amount);
 
         ResourceManager.Instance.AddResource(recipe.outputType, recipe.outputAmount);
-        Debug.Log($"Crafted {recipe.itemName}. +{recipe.outputAmount} {recipe.outputType}.");
+        GameManager.Instance.AddCraftedCount(recipe.outputAmount);
+        //Debug.Log($"Crafted {recipe.itemName}. +{recipe.outputAmount} {recipe.outputType}.");
         return true;
     }
 
