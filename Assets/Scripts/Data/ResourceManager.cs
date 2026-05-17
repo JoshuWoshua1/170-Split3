@@ -7,7 +7,11 @@ public enum ResourceType
     Water,
     Glucose,
     AminoAcids,
-    Deoxyribose
+    Deoxyribose,
+    CovidVirus,
+    Bacteria,
+    MicroFungi
+
 }
 
 public class ResourceManager : MonoBehaviour

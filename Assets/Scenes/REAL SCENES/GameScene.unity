@@ -151,6 +151,8 @@ MonoBehaviour:
   allRecipes:
   - {fileID: 11400000, guid: 4acd4c6717cc745a8bf39de47279cdff, type: 2}
   - {fileID: 11400000, guid: 0cbf46a9b5a739c41b6e94a1be48a5c5, type: 2}
+  - {fileID: 11400000, guid: 494ddb3790ec1433fba2d1c91d96b6b7, type: 2}
+  - {fileID: 11400000, guid: 784adec0f4660446f83fb8dbcc29e2ec, type: 2}
 --- !u!4 &60899403
 Transform:
   m_ObjectHideFlags: 0
@@ -203,6 +205,10 @@ MonoBehaviour:
   - prefab: {fileID: 8049495306745319248, guid: 8de7bb3f46f09074e8f2e09395474f5c, type: 3}
     count: 450
   - prefab: {fileID: 8400990771858815825, guid: 862a8a58137a1ad4898cac421e7b5dce, type: 3}
+    count: 250
+  - prefab: {fileID: 6511423397571263139, guid: bab6322a60b064fdeb054ad1124f5a06, type: 3}
+    count: 250
+  - prefab: {fileID: 6926703945225775240, guid: cd07fff66e15a4ac3a5d6f2fa7ee1a99, type: 3}
     count: 250
   spawnArea: {x: 400, y: 400}
   spawnHeight: 0.2
