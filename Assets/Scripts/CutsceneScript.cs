@@ -7,6 +7,7 @@ public class CutsceneScript : MonoBehaviour
     [SerializeField] PlayerController player;
     [SerializeField] PlayableDirector cutscene;
     [SerializeField] int sizeToFinish = 4;
+    [SerializeField] AudioSource muteAudioSource;
 
 
     // Update is called once per frame
@@ -17,6 +18,10 @@ public class CutsceneScript : MonoBehaviour
             if (cutscene != null)
             {
                 cutscene.Play();
+            }
+            if (muteAudioSource != null)
+            {
+                muteAudioSource.mute = true;
             }
         }
     }

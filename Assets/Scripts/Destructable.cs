@@ -5,6 +5,7 @@ public class Destructable : MonoBehaviour
     public float sizeRequirement = 1f; // player size required to consume this object 
     [SerializeField] private ResourceType[] resourceType; // type(s) of resource this object provides
     [SerializeField] private int[] resourceAmount = {1}; // amount(s) of resource this object provides
+    [SerializeField] private AudioClip consumeSound; // sound to play when consumed
     [SerializeField] private GameObject consumeParticles; // particles
 
     ResourceManager resourceManager;
@@ -49,6 +50,11 @@ public class Destructable : MonoBehaviour
             if (consumeParticles != null)
             {
                 Instantiate(consumeParticles, transform.position, Quaternion.identity);
+            }
+
+            if (consumeSound != null)
+            {
+                AudioSource.PlayClipAtPoint(consumeSound, transform.position);
             }
 
             Destroy(gameObject); // destroy object after consumption.

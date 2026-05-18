@@ -135,3 +135,5 @@ MonoBehaviour:
   resourceAmount: 01000000
   roamNoiseScale: 0.35
   roamSmoothing: 4
+  consumeParticles: {fileID: 0}
+  consumeSound: {fileID: 8300000, guid: a245d9bf9304fdd47954f9b0b5900d49, type: 3}

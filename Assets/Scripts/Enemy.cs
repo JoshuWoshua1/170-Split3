@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private Vector3 currentRoamDirection;
     private bool spawnTracking = true; // flag to prevent roaming and player scanning until spawn tracking is complete
     [SerializeField] private GameObject consumeParticles; // particles
+    [SerializeField] private AudioClip consumeSound; // sound to play when consumed
 
     ResourceManager resourceManager;
     Collider enemyCollider;
@@ -207,6 +208,11 @@ public class Enemy : MonoBehaviour
                 transform.position + Vector3.up * 0.5f,
                 Quaternion.identity
             );
+        }
+
+        if (consumeSound != null)
+        {
+            AudioSource.PlayClipAtPoint(consumeSound, transform.position);
         }
 
         Destroy(gameObject); // destroy object after consumption.

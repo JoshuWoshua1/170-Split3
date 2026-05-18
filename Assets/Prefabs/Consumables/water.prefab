@@ -128,4 +128,5 @@ MonoBehaviour:
   sizeRequirement: 1
   resourceType: 00000000
   resourceAmount: 01000000
+  consumeSound: {fileID: 8300000, guid: a245d9bf9304fdd47954f9b0b5900d49, type: 3}
   consumeParticles: {fileID: 0}
